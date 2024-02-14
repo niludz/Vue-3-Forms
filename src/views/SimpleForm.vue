@@ -7,48 +7,57 @@
       slabel="Select a aaacategory"
       />
 
-      <h3>Name & describe your event</h3>
+      <fieldset>
+        <legend>Name & describe your event</legend>
+        <BaseInput
+          v-model="event.title"
+          label="Title"
+          type="text"
+          error="This input has an error!"/>
 
-      <BaseInput
-        v-model="event.title"
-        label="Title"
+        <BaseInput
+          v-model="event.description"
+          label="Description"
+          type="text"/>
+      </fieldset>
+
+      <fieldset>
+        <legend>Where is your event?</legend>
+        <BaseInput
+        v-model="event.location"
+        label="Location"
         type="text"/>
+      </fieldset>
 
-      <BaseInput
-      v-model="event.description"
-      label="Description"
-      type="text"/>
+      <fieldset>
+        <legend>Pets</legend>
+        <p>Are pets allowed?</p>
+        <div>
+          <BaseRadioGroup
+            v-model="event.pets"
+            vertical
+            name="pets"
+            :options="petOptions"
+          ></BaseRadioGroup>
+        </div>
+      </fieldset>
 
-      <h3>Where is your event?</h3>
-      <BaseInput
-      v-model="event.location"
-      label="Location"
-      type="text"/>
+      <fieldset>
+        <legend>Extras</legend>
+        <div>
+          <BaseCheckbox
+            v-model="event.extras.catering"
+            label="Catering"
+          />
+        </div>
 
-      <h3>Are pets allowed?</h3>
-      <div>
-        <BaseRadioGroup
-          v-model="event.pets"
-          vertical
-          name="pets"
-          :options="petOptions"
-        ></BaseRadioGroup>
-      </div>
-
-      <h3>Extras</h3>
-      <div>
-        <BaseCheckbox
-          v-model="event.extras.catering"
-          label="Catering"
-        />
-      </div>
-
-      <div>
-        <BaseCheckbox
-          v-model="event.extras.music"
-          label="Live music"
-        />
-      </div>
+        <div>
+          <BaseCheckbox
+            v-model="event.extras.music"
+            label="Live music"
+          />
+        </div>
+      </fieldset>
 
       <button type="submit">Submit</button>
     </form>
@@ -106,3 +115,16 @@ export default {
   }
 }
 </script>
+<style>
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+</style>
