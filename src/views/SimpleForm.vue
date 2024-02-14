@@ -3,7 +3,7 @@
     <h1>Create an event</h1>
     <form>
 
-      <label>Select a category</label>
+      <!-- <label>Select a category</label>
       <select v-model="event.category">
         <option
           v-for="option in categories"
@@ -11,35 +11,29 @@
           :key="option"
           :selected="option === event.category"
         >{{ option }}</option>
-      </select>
+      </select> -->
+      <BaseSelect :options="categories"
+      v-model="event.category"
+      label="Select a aaacategory"
+      />
 
       <h3>Name & describe your event</h3>
 
-      <label>Title</label>
-      <input
+      <BaseInput
         v-model="event.title"
-        type="text"
-        placeholder="Title"
-        class="field"
-      >
+        label="Title"
+        type="text"/>
 
-      <label>Description</label>
-      <input
-        v-model="event.description"
-        type="text"
-        placeholder="Description"
-        class="field"
-      />
+      <BaseInput
+      v-model="event.description"
+      label="Description"
+      type="text"/>
 
       <h3>Where is your event?</h3>
-
-      <label>Location</label>
-      <input
-        v-model="event.location"
-        type="text"
-        placeholder="Location"
-        class="field"
-      />
+      <BaseInput
+      v-model="event.location"
+      label="Location"
+      type="text"/>
 
       <h3>Are pets allowed?</h3>
       <div>
@@ -89,9 +83,13 @@
 </template>
 
 <script>
+import BaseInput from '../components/BaseInput.vue'
+import BaseSelect from '../components/BaseSelect.vue'
+
 export default {
   data () {
     return {
+      // Aa: 'ssssss',
       categories: [
         'sustainability',
         'nature',
@@ -113,6 +111,7 @@ export default {
         }
       }
     }
-  }
+  },
+  components: { BaseInput, BaseSelect }
 }
 </script>

@@ -1,68 +1,30 @@
 <template>
-  <label
-    v-if="label"
-    :for="uuid"
-  >
-    {{ label }}
-  </label>
-  <select
-    class="field"
-    v-bind="{
-      ...$attrs,
-      onChange: updateValue
-    }"
-    :value="modelValue"
-    :id="uuid"
-    :aria-describedby="error ? `${uuid}-error` : null"
-    :aria-invalid="error ? true : false"
-    :class="{ error }"
-  >
+  <label v-if="slabel">{{slabel}}</label>
+  <select :value="modelValue" class="field"
+    :="{...$attrs,
+    onChange:($event)=>{$emit('Update:modelValue',$event.target.value)}}">
     <option
       v-for="option in options"
       :value="option"
       :key="option"
       :selected="option === modelValue"
-    >
-      {{ option }}
-    </option>
+    >{{ option }}</option>
   </select>
-  <BaseErrorMessage
-    v-if="error"
-    :id="`${uuid}-error`"
-  >
-    {{ error }}
-  </BaseErrorMessage>
 </template>
-
 <script>
-import SetupFormComponent from '@/features/SetupFormComponent'
-import UniqueID from '@/features/UniqueID'
-
 export default {
   props: {
-    options: {
-      type: Array,
-      required: true
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    error: {
+    slabel: {
       type: String,
       default: ''
     },
     modelValue: {
-      type: [String, Number]
-    }
-  },
-  setup (props, context) {
-    const { updateValue } = SetupFormComponent(props, context)
-    const uuid = UniqueID().getID()
-
-    return {
-      updateValue,
-      uuid
+      type: [String, Number],
+      default: ''
+    },
+    options: {
+      type: Array,
+      required: true
     }
   }
 }
