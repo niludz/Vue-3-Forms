@@ -2,16 +2,6 @@
   <div>
     <h1>Create an event</h1>
     <form>
-
-      <!-- <label>Select a category</label>
-      <select v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >{{ option }}</option>
-      </select> -->
       <BaseSelect :options="categories"
       v-model="event.category"
       slabel="Select a aaacategory"
@@ -37,21 +27,12 @@
 
       <h3>Are pets allowed?</h3>
       <div>
-        <BaseRadio
+        <BaseRadioGroup
           v-model="event.pets"
-          :value="1"
-          label="Yes"
+          vertical
           name="pets"
-        />
-      </div>
-
-      <div>
-        <BaseRadio
-          v-model="event.pets"
-          :value="0"
-          label="No"
-          name="pets"
-        />
+          :options="petOptions"
+        ></BaseRadioGroup>
       </div>
 
       <h3>Extras</h3>
@@ -101,7 +82,11 @@ export default {
           catering: false,
           music: false
         }
-      }
+      },
+      petOptions: [
+        { label: 'Yes', value: 1 },
+        { label: 'No', value: 0 }
+      ]
     }
   }
 }
