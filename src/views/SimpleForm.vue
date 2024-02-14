@@ -14,7 +14,7 @@
       </select> -->
       <BaseSelect :options="categories"
       v-model="event.category"
-      label="Select a aaacategory"
+      slabel="Select a aaacategory"
       />
 
       <h3>Name & describe your event</h3>
@@ -58,21 +58,17 @@
 
       <h3>Extras</h3>
       <div>
-        <input
-          type="checkbox"
+        <BaseCheckbox
           v-model="event.extras.catering"
-          class="field"
+          label="Catering"
         />
-        <label>Catering</label>
       </div>
 
       <div>
-        <input
-          type="checkbox"
+        <BaseCheckbox
           v-model="event.extras.music"
-          class="field"
+          label="Live music"
         />
-        <label>Live music</label>
       </div>
 
       <button type="submit">Submit</button>
@@ -83,8 +79,6 @@
 </template>
 
 <script>
-import BaseInput from '../components/BaseInput.vue'
-import BaseSelect from '../components/BaseSelect.vue'
 
 export default {
   data () {
@@ -111,7 +105,6 @@ export default {
         }
       }
     }
-  },
-  components: { BaseInput, BaseSelect }
+  }
 }
 </script>

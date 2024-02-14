@@ -3,6 +3,8 @@
   <select :value="modelValue" class="field"
     :="{...$attrs,
     onChange:($event)=>{$emit('Update:modelValue',$event.target.value)}}">
+    <!-- @change="$emit('Update:modelValue',$event.target.value)"> -->
+
     <option
       v-for="option in options"
       :value="option"
